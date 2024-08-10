@@ -1,45 +1,45 @@
-import { checkPropTypes } from "prop-types";
-import { useMemo } from "react";
-import { useContext } from "react";
-import { useReducer } from "react";
-import { createContext } from "react";
+// import { checkPropTypes } from "prop-types";
+// import { useMemo } from "react";
+// import { useContext } from "react";
+// import { useReducer } from "react";
+// import { createContext } from "react";
 
-const MaterialUI = createContext();
+// const MaterialUI = createContext();
 
-MaterialUI.displayName = "MaterialUIContext";
+// MaterialUI.displayName = "MaterialUIContext";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "DARKMODE": {
-      return { ...state, darkMode: action.value };
-    }
-  }
-}
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case "DARKMODE": {
+//       return { ...state, darkMode: action.value };
+//     }
+//   }
+// }
 
-function MaterialUIControllerProvider({ children }) {
-  const initialState = {
-    darkMode: true,
-  };
-  const [controller, dispatch] = useReducer(reducer, initialState);
-  const value = useMemo(() => [controller, dispatch], [controller, dispatch]);
+// function MaterialUIControllerProvider({ children }) {
+//   const initialState = {
+//     darkMode: true,
+//   };
+//   const [controller, dispatch] = useReducer(reducer, initialState);
+//   const value = useMemo(() => [controller, dispatch], [controller, dispatch]);
 
-  return <MaterialUI.Provider value={value}> {children}</MaterialUI.Provider>;
-}
+//   return <MaterialUI.Provider value={value}> {children}</MaterialUI.Provider>;
+// }
 
-function useMaterialUIController() {
-  const context = useContext(MaterialUI);
-  if (!context) {
-    throw new Error(
-      "useMaterialUIController should be used inside the MaterialUIControllerProvider."
-    );
-  }
-  return context;
-}
+// function useMaterialUIController() {
+//   const context = useContext(MaterialUI);
+//   if (!context) {
+//     throw new Error(
+//       "useMaterialUIController should be used inside the MaterialUIControllerProvider."
+//     );
+//   }
+//   return context;
+// }
 
-MaterialUIControllerProvider.prototype = {
-  children: checkPropTypes.none.isRequired,
-};
+// MaterialUIControllerProvider.prototype = {
+//   children: checkPropTypes.none.isRequired,
+// };
 
-const setDarkMode = (dispatch, value) => dispatch({ tyep: "DARKMODE", value });
+// const setDarkMode = (dispatch, value) => dispatch({ tyep: "DARKMODE", value });
 
-export { MaterialUIControllerProvider, useMaterialUIController, setDarkMode };
+// export { MaterialUIControllerProvider, useMaterialUIController, setDarkMode };
